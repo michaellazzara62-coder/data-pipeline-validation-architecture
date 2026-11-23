@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/partner_submission_v1.json",
+  "title": "PartnerSubmissionV1",
+  "type": "object",
+  "required": ["submission_id", "partner_id", "reporting_period", "metrics"],
+  "additionalProperties": false,
+  "properties": {
+    "submission_id": {
+      "type": "string",
+      "pattern": "^SUB-[0-9]{6}$"
+    },
+    "partner_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "reporting_period": {
+      "type": "string",
+      "format": "date"
+    },
+    "metrics": {
+      "type": "object",
+      "required": ["program_count", "total_attendance"],
+      "properties": {
+        "program_count": { "type": "integer", "minimum": 0 },
+        "total_attendance": { "type": "integer", "minimum": 0 },
+        "region_code": { "type": ["string", "null"] }
+      }
+    }
+  }
+}
